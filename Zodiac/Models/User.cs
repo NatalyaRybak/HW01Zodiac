@@ -12,6 +12,11 @@ namespace Zodiac.Models
         private readonly string[] _westernSigns = { "Capricorn", "Aquarius", "Pisces", "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius" };
         private readonly string[] _chineseSigns = { "Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig" };
 
+        internal User()
+        {
+            _birthDate = DateTime.Today;
+        }
+
         public bool Congrats => DateTime.Today.Month == _birthDate.Month && DateTime.Today.Day == _birthDate.Day;
 
         public DateTime BirthDate

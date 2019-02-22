@@ -1,10 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Forms;
+using System.Windows;
 using KMA.ProgrammingInCSharp2019.Practice3.LoginControlMVVM.Properties;
 using Zodiac.Models;
 using Zodiac.Tools;
+
 
 namespace Zodiac.ViewModels
 {
@@ -25,14 +26,19 @@ namespace Zodiac.ViewModels
             get { return _user.BirthDate; }
             set {
                 _user.BirthDate = value;
+                if ( !_user.Executable )
+                {
+                    MessageBox.Show("Invalid date!!!");
 
-                if ( _user.Congrats )
+                } else if ( _user.Congrats )
                 {
                     MessageBox.Show("Happy birthday!!!");
 
                 }
-                
                 OnPropertyChanged();
+                OnPropertyChanged (nameof(Age));
+                OnPropertyChanged (nameof(ChineseSign));
+                OnPropertyChanged (nameof(WesternSign));
 
             }
         }
@@ -68,25 +74,14 @@ namespace Zodiac.ViewModels
         public bool CanExecuteCommand ()
         {
             
-            return !((_birthDate > DateTime.Now) || (Age() > 135));
+            return !(_user.Executable);
         }
 
-        private int Age()
-        {
-            if (_birthDate.Month > DateTime.Now.Month ||(_birthDate.Month == DateTime.Now.Month && _birthDate.Day > DateTime.Now.Day))
-            {
-                return DateTime.Now.Year - _birthDate.Year - 1;
+        public string Age => _user.Age;
+        public string ChineseSign => _user.ChineseSign;
+        public string WesternSign => _user.WesternSign;
 
-            }
-            else if (_birthDate.Month<DateTime.Now.Month ||(_birthDate.Month == DateTime.Now.Month && _birthDate.Day <= DateTime.Now.Day))
-            {
-             return  DateTime.Now.Year - _birthDate.Year;
-            }
 
-            return 0;
-        }
-
-        private void
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

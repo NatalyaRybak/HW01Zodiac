@@ -19,15 +19,15 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Zodiac calculator" Margin="70,10,10,10" FontSize="16" FontWeight="Bold" Grid.ColumnSpan="2" Width="220"/>
+        <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Zodiac calculator" Margin="10" FontSize="16" FontWeight="Bold" Grid.ColumnSpan="2" Width="280"/>
         <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Enter your birth date: " FontSize="14" Grid.ColumnSpan="2" Width="285" Margin="5,0,0,0"/>
         <DatePicker Grid.Row="2" Grid.Column="0"  HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="24" Margin="10,10,5,11" FontSize="14" SelectedDate="{Binding BirthDate}" Grid.ColumnSpan="2"/>
-        <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" FontSize="14" Text="Age: " Visibility="{Binding VisibilityText}" />
-        <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" FontSize="14" Visibility="{Binding VisibilityText}" />
+        <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" FontSize="14" Text="Age: "  Visibility="{Binding VisibilityText}" />
+        <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" FontSize="14" Text="{Binding Age}" Visibility="{Binding VisibilityText}" />
         <TextBlock Grid.Row="4" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" FontSize="14" Text="Western Zodiac sign: " Visibility="{Binding VisibilityText}"/>
-        <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" FontSize="14" Visibility="{Binding VisibilityText}"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" FontSize="14" Text="{Binding WesternSign}" Visibility="{Binding VisibilityText}"/>
         <TextBlock Grid.Row="5" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" FontSize="14" Text="Chinese Zodiac sign: " Visibility="{Binding VisibilityText}"/>
-        <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" FontSize="14" Visibility="{Binding VisibilityText}"/>
+        <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" FontSize="14" Text="{Binding ChineseSign}" Visibility="{Binding VisibilityText}"/>
         <Button Content="Go!" HorizontalAlignment="Left" Margin="114,55,0,-22" Grid.Row="5" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" RenderTransformOrigin="0.44,1" Command ="{Binding FindSignCommand}"/>
 
     </Grid>
