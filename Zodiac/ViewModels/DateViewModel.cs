@@ -26,20 +26,22 @@ namespace Zodiac.ViewModels
             get { return _user.BirthDate; }
             set {
                 _user.BirthDate = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(Age));
+                OnPropertyChanged(nameof(ChineseSign));
+                OnPropertyChanged(nameof(WesternSign));
+
                 if ( !_user.Executable )
                 {
                     MessageBox.Show("Invalid date!!!");
+                    VisibilityText = "Hidden";
 
                 } else if ( _user.Congrats )
                 {
                     MessageBox.Show("Happy birthday!!!");
 
                 }
-                OnPropertyChanged();
-                OnPropertyChanged (nameof(Age));
-                OnPropertyChanged (nameof(ChineseSign));
-                OnPropertyChanged (nameof(WesternSign));
-
+                
             }
         }
 
@@ -54,7 +56,7 @@ namespace Zodiac.ViewModels
                            o =>
                            {
                                VisibilityText = "Visible";
-
+                               
                            }, o => CanExecuteCommand()));
             }
         }
@@ -74,7 +76,7 @@ namespace Zodiac.ViewModels
         public bool CanExecuteCommand ()
         {
             
-            return !(_user.Executable);
+            return (_user.Executable);
         }
 
         public string Age => _user.Age;
