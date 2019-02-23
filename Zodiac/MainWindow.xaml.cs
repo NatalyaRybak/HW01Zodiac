@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Zodiac.ViewModels;
 
 namespace Zodiac
 {
@@ -10,6 +11,8 @@ namespace Zodiac
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
+
         }
     }
 }

@@ -16,3 +16,6 @@ C:\ukma\C#\Zodiac\Zodiac\obj\Debug\Zodiac.csproj.CoreCompileInputs.cache
 C:\ukma\C#\Zodiac\Zodiac\obj\Debug\Zodiac.exe
 C:\ukma\C#\Zodiac\Zodiac\obj\Debug\Zodiac.pdb
 C:\ukma\C#\Zodiac\Zodiac\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\ukma\C#\Zodiac\Zodiac\bin\Debug\FontAwesome.WPF.dll
+C:\ukma\C#\Zodiac\Zodiac\bin\Debug\FontAwesome.WPF.xml
+C:\ukma\C#\Zodiac\Zodiac\obj\Debug\Zodiac.csproj.CopyComplete

@@ -1,15 +1,14 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
-using KMA.ProgrammingInCSharp2019.Practice3.LoginControlMVVM.Properties;
 using Zodiac.Models;
 using Zodiac.Tools;
 
 
 namespace Zodiac.ViewModels
 {
-    internal class DateViewModel : INotifyPropertyChanged
+    internal class DateViewModel : BaseViewModel
     {
         #region Fields
         private readonly User _user = new User();
@@ -26,22 +25,15 @@ namespace Zodiac.ViewModels
             get { return _user.BirthDate; }
             set {
                 _user.BirthDate = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(Age));
-                OnPropertyChanged(nameof(ChineseSign));
-                OnPropertyChanged(nameof(WesternSign));
-
-                if ( !_user.Executable )
+                if (!_user.Executable)
                 {
+                   VisibilityText = "Hidden";
                     MessageBox.Show("Invalid date!!!");
-                    VisibilityText = "Hidden";
-
-                } else if ( _user.Congrats )
-                {
-                    MessageBox.Show("Happy birthday!!!");
-
                 }
-                
+                VisibilityText = "Hidden";
+                    
+
+
             }
         }
 
@@ -53,11 +45,7 @@ namespace Zodiac.ViewModels
 
            {
                 return _findSignCommand ?? (_findSignCommand = new RelayCommand<object>(
-                           o =>
-                           {
-                               VisibilityText = "Visible";
-                               
-                           }, o => CanExecuteCommand()));
+                           DateImplementation, o => CanExecuteCommand()));
             }
         }
         #endregion
@@ -85,6 +73,33 @@ namespace Zodiac.ViewModels
 
 
 
+        private async void DateImplementation(object obj)
+        {
+            LoaderManager.Instance.ShowLoader();
+            await Task.Run(() =>
+            {
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(Age));
+                OnPropertyChanged(nameof(ChineseSign));
+                OnPropertyChanged(nameof(WesternSign));
+
+                if (!_user.Executable)
+                {
+                    VisibilityText = "Hidden";
+                    MessageBox.Show("Invalid date!!!");
+
+                }
+                else if (_user.Congrats)
+                {
+                    VisibilityText = "Visible";
+                    MessageBox.Show("Happy birthday!!!");
+                }
+
+            });
+            LoaderManager.Instance.HideLoader();
+        }
+
+        /*
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -94,6 +109,7 @@ namespace Zodiac.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+        */
     }
 
 }
