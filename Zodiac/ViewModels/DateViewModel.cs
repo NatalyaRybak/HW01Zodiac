@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Zodiac.Models;
@@ -78,11 +77,8 @@ namespace Zodiac.ViewModels
             LoaderManager.Instance.ShowLoader();
             await Task.Run(() =>
             {
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(Age));
-                OnPropertyChanged(nameof(ChineseSign));
-                OnPropertyChanged(nameof(WesternSign));
-
+                
+                VisibilityText = "Visible";
                 if (!_user.Executable)
                 {
                     VisibilityText = "Hidden";
@@ -95,21 +91,17 @@ namespace Zodiac.ViewModels
                     MessageBox.Show("Happy birthday!!!");
                 }
 
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(Age));
+                OnPropertyChanged(nameof(ChineseSign));
+                OnPropertyChanged(nameof(WesternSign));
+
+
+
             });
             LoaderManager.Instance.HideLoader();
         }
 
-        /*
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
-        */
     }
 
 }

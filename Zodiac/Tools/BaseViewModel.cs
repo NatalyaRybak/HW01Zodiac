@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using KMA.ProgrammingInCSharp2019.Practice3.LoginControlMVVM.Properties;
+using Zodiac.Properties;
 
 namespace Zodiac.Tools
 {
