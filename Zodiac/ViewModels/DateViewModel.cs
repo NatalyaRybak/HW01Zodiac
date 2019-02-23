@@ -31,7 +31,6 @@ namespace Zodiac.ViewModels
             }
         }
         public string Age => _user.Age;
-        public string Date => _user.BirthDate.ToShortDateString ();
         public string ChineseSign => _user.ChineseSign;
         public string WesternSign => _user.WesternSign;
         public bool Executable => _user.Executable;
@@ -79,7 +78,6 @@ namespace Zodiac.ViewModels
 
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(Age));
-                OnPropertyChanged(nameof(Date));
                 OnPropertyChanged(nameof(ChineseSign));
                 OnPropertyChanged(nameof(WesternSign));
 

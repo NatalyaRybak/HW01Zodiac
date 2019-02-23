@@ -9,7 +9,8 @@ namespace Zodiac.Models
         private readonly string[] _chineseSigns = { "Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Goat", "Monkey", "Rooster", "Dog", "Pig" };
         internal User()
         {
-            _birthDate = DateTime.Today;
+            _birthDate = new DateTime(2009, 9, 4);
+            InitializeProperties ();
         }
         public DateTime BirthDate
         {
@@ -17,7 +18,6 @@ namespace Zodiac.Models
             set { _birthDate = value; InitializeProperties ();}
         }
         public string Age { get; private set; }
-        public string Date { get; private set; }
         public string ChineseSign { get; private set; }
         public string WesternSign { get; private set; }
         public bool Executable { get; private set; }
@@ -27,11 +27,10 @@ namespace Zodiac.Models
 
         private void InitializeProperties()
         {
-            Date = _birthDate.ToShortDateString();
             var age = (DateTime.Today.Year - _birthDate.Year) -
                                       (DateTime.Today.DayOfYear >= _birthDate.DayOfYear ? 0 : 1);
             var diff = DateTime.Today - _birthDate;
-            Executable = diff.Days > 0 && age <= 135;
+            Executable = diff.Days >= 0 && age <= 135;
 
             if (Executable)
             {
